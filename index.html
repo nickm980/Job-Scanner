@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Job Search</title>
+</head>
+
+<body>
+  <header>
+    <nav>
+      <div class="logo">
+        <h1>Get Job Alerts Before LinkedIn </h1>
+      </div>
+    </nav>
+  </header>
+  <main>
+    <section class="job-listings">
+      <h2>Available Jobs</h2>
+      <div class="jobs" id="job-list">
+        <table>
+          <tbody id="jobs-body">
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Job Finder</p>
+  </footer>
+  <script async defer>
+    const table = document.getElementById("jobs-body")
+
+    function createRow(link) {
+      const container = document.createElement("tr")
+      const row = document.createElement("td")
+      const a = document.createElement("a")
+      a.innerText = link
+      a.href = link
+      row.appendChild(a)
+      container.appendChild(row)
+      table.appendChild(container)
+    }
+
+    fetch("https://raw.githubusercontent.com/nickm980/Job-Scanner/refs/heads/main/seen_links.json").then(data => data.json()).then(data => data.forEach(link => createRow(link)))
+  </script>
+</body>
+
+</html>
